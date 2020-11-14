@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Pipe.hpp"
 
 namespace FlappyBird {
 	class GameState : public State {
@@ -19,5 +20,7 @@ namespace FlappyBird {
 		GameDataRef _data;
 
 		sf::Sprite _background;
+
+		Pipe* _pipe;
 	};
 }
