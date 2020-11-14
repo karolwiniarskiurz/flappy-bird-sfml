@@ -5,7 +5,7 @@
 
 #include "State.hpp"
 
-namespace Sonar {
+namespace FlappyBird {
 	typedef std::unique_ptr<State> StateRef;
 
 	class StateMachine {

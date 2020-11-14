@@ -1,6 +1,6 @@
 #include "StateMachine.hpp";
 
-namespace Sonar {
+namespace FlappyBird {
 	void StateMachine::addState(StateRef newState, bool isReplacing) {
 		this->_isAdding = true;
 		this->_isReplacing = isReplacing;

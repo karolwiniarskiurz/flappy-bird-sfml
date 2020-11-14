@@ -5,9 +5,9 @@
 #include "Game.hpp"
 
 namespace FlappyBird {
-	class MainMenuState : public State {
+	class GameState : public State {
 	public:
-		MainMenuState(GameDataRef data);
+		GameState(GameDataRef data);
 
 		void init();
 
@@ -18,8 +18,6 @@ namespace FlappyBird {
 	private:
 		GameDataRef _data;
 
-
 		sf::Sprite _background;
-		sf::Sprite _message;
 	};
 }

@@ -1,5 +1,5 @@
 #include "InputManager.hpp"
-namespace Sonar {
+namespace FlappyBird {
 	bool InputManager::isSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow& window)
 	{
 		if (sf::Mouse::isButtonPressed(button)) {

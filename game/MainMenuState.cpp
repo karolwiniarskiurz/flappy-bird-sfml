@@ -1,10 +1,11 @@
 #include <sstream>
 #include "MainMenuState.hpp"
 #include "Definitions.hpp"
+#include "GameState.hpp"
 
 #include <iostream>
 
-namespace Sonar {
+namespace FlappyBird {
 	MainMenuState::MainMenuState(GameDataRef data) : _data(data) {
 
 	}
@@ -27,7 +28,7 @@ namespace Sonar {
 			}
 
 			if (_data->input.isSpriteClicked(_background, sf::Mouse::Left, _data->window)) {
-				std::cout << "Go to play" << std::endl;
+				_data->machine.addState(StateRef(new GameState(_data)), true);
 			}
 		}
 	}

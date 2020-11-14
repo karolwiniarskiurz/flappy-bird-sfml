@@ -1,6 +1,6 @@
 #include "AssetManager.hpp"
 
-namespace Sonar {
+namespace FlappyBird {
 	void AssetManager::loadTexture(std::string name, std::string fileName) {
 		sf::Texture texture;
 

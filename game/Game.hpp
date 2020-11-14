@@ -8,7 +8,7 @@
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
 
-namespace Sonar {
+namespace FlappyBird {
 	struct GameData {
 		StateMachine machine;
 		sf::RenderWindow window; 

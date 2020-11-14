@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Sonar {
+namespace FlappyBird {
 	class State {
 	public: 
 		virtual void init() = 0;

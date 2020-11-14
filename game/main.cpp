@@ -5,6 +5,6 @@
 
 int main()
 {
-	Sonar::Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_NAME);
+	FlappyBird::Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_NAME);
 	return EXIT_SUCCESS;
 }
