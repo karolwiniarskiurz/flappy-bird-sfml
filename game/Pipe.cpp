@@ -1,6 +1,11 @@
 #include "Pipe.hpp"
+#include <iostream>
+
 namespace FlappyBird {
-	Pipe::Pipe(GameDataRef data) : _data(data) {}
+	Pipe::Pipe(GameDataRef data) : _data(data) {
+		_landHeight = _data->assets.getTexture("Land").getSize().y;
+		_pipeSpawnYOffset = 0;
+	}
 
 	void Pipe::drawPipes() {
 		for (unsigned short int i = 0; i < _pipeSprites.size(); i++) {
@@ -10,14 +15,14 @@ namespace FlappyBird {
 
 	void Pipe::spawnTopPipe() {
 		sf::Sprite sprite(_data->assets.getTexture("Pipe Down"));
-		sprite.setPosition(_data->window.getSize().x, 0);
+		sprite.setPosition(_data->window.getSize().x, -_pipeSpawnYOffset);
 
 		_pipeSprites.push_back(sprite);
 	}
 
 	void Pipe::spawnBottomPipe() {
 		sf::Sprite sprite(_data->assets.getTexture("Pipe Up"));
-		sprite.setPosition(_data->window.getSize().x, _data -> window.getSize().y - sprite.getGlobalBounds().height);
+		sprite.setPosition(_data->window.getSize().x, _data -> window.getSize().y - sprite.getLocalBounds().height - _pipeSpawnYOffset);
 
 		_pipeSprites.push_back(sprite);
 	}
@@ -32,10 +37,17 @@ namespace FlappyBird {
 
 	void Pipe::movePipe(float dt) {
 		for (unsigned short int i = 0; i < _pipeSprites.size(); i++) {
-			sf::Vector2f position = _pipeSprites.at(i).getPosition();
-			float movement = PIPE_SPEED * dt;
-
-			_pipeSprites.at(i).move(-movement, 0);
+			if (_pipeSprites.at(i).getPosition().x < 0 - _pipeSprites.at(i).getGlobalBounds().width) {
+				_pipeSprites.erase(_pipeSprites.begin() + i);
+			}
+			else {
+				float movement = PIPE_SPEED * dt;
+				_pipeSprites.at(i).move(-movement, 0);
+			}
 		}
+	}
+
+	void Pipe::randomisePipeOffset() {
+		_pipeSpawnYOffset = rand() % (_landHeight + 1);
 	}
 }

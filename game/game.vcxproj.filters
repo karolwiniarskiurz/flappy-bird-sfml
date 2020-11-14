@@ -30,9 +30,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SplashState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +40,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pipe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Land.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,9 +65,6 @@
     <ClInclude Include="Definitions.hpp">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="SplashState.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenuState.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -78,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Pipe.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Land.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
