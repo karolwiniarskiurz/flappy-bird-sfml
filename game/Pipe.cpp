@@ -22,14 +22,14 @@ namespace FlappyBird {
 
 	void Pipe::spawnBottomPipe() {
 		sf::Sprite sprite(_data->assets.getTexture("Pipe Up"));
-		sprite.setPosition(_data->window.getSize().x, _data -> window.getSize().y - sprite.getLocalBounds().height - _pipeSpawnYOffset);
+		sprite.setPosition(_data->window.getSize().x, _data->window.getSize().y - sprite.getLocalBounds().height - _pipeSpawnYOffset);
 
 		_pipeSprites.push_back(sprite);
 	}
 
 	void Pipe::spawnInvisiblePipe() {
 		sf::Sprite sprite(_data->assets.getTexture("Pipe Up"));
-		sprite.setPosition(0, 0);
+		sprite.setPosition(this->_data->window.getSize().x, -_pipeSpawnYOffset);
 		sprite.setColor(sf::Color(0, 0, 0, 0));
 
 		_pipeSprites.push_back(sprite);
@@ -37,7 +37,7 @@ namespace FlappyBird {
 
 	void Pipe::movePipe(float dt) {
 		for (unsigned short int i = 0; i < _pipeSprites.size(); i++) {
-			if (_pipeSprites.at(i).getPosition().x < 0 - _pipeSprites.at(i).getGlobalBounds().width) {
+			if (_pipeSprites.at(i).getPosition().x < 0 - _pipeSprites.at(i).getLocalBounds().width) {
 				_pipeSprites.erase(_pipeSprites.begin() + i);
 			}
 			else {
