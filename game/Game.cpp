@@ -11,6 +11,7 @@ namespace FlappyBird {
 
 
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+		_data->window.setFramerateLimit(60);
 
 		sf::Image icon;
 		icon.loadFromFile(ICON_FILEPATH);

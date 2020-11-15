@@ -22,7 +22,6 @@ namespace FlappyBird {
 				readfile >> _highScore;
 			}
 		}
-
 		readfile.close();
 
 		std::ofstream writeFile(HIGH_SCORE_FILE);
@@ -39,11 +38,28 @@ namespace FlappyBird {
 		_data->assets.loadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
 		_data->assets.loadTexture("Game Over Title", GAME_OVER_TITLE_FILEPATH);
 		_data->assets.loadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
+		_data->assets.loadTexture("Platinum Medal", PLATINUM_MEDAL_FILEPATH);
+		_data->assets.loadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
+		_data->assets.loadTexture("Bronze Medal", GOLD_MEDAL_FILEPATH);
+		_data->assets.loadTexture("Silver Medal", GOLD_MEDAL_FILEPATH);
 
 		_background.setTexture(this->_data->assets.getTexture("Game Over Background"));
 		_gameOverTitle.setTexture(this->_data->assets.getTexture("Game Over Title"));
 		_gameOverContainer.setTexture(this->_data->assets.getTexture("Game Over Body"));
 		_retryButton.setTexture(this->_data->assets.getTexture("Play Button"));
+
+		if (_score <= 5) {
+			_medal.setTexture(_data->assets.getTexture("Bronze Medal"));
+		}
+		else if (_score <= 15) {
+			_medal.setTexture(_data->assets.getTexture("Silver Medal"));
+		}
+		else if (_score <= 30) {
+			_medal.setTexture(_data->assets.getTexture("Gold Medal"));
+		}
+		else {
+			_medal.setTexture(_data->assets.getTexture("Platinum Medal"));
+		}
 
 
 		_gameOverContainer.setPosition(_data->window.getSize().x / 2 - _gameOverContainer.getGlobalBounds().width / 2,
@@ -68,6 +84,8 @@ namespace FlappyBird {
 		_highScoreText.setFillColor(sf::Color::White);
 		_highScoreText.setOrigin(_highScoreText.getGlobalBounds().width / 2, _highScoreText.getGlobalBounds().height / 2);
 		_highScoreText.setPosition(_data->window.getSize().x / 10 * 7.25, _data->window.getSize().y / 1.8);
+
+		_medal.setPosition(175, 465);
 	}
 
 	void GameOverState::handleInput() {
@@ -95,6 +113,7 @@ namespace FlappyBird {
 		_data->window.draw(_retryButton);
 		_data->window.draw(_scoreText);
 		_data->window.draw(_highScoreText);
+		_data->window.draw(_medal);
 
 		_data->window.display();
 	}

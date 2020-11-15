@@ -50,3 +50,8 @@ constexpr auto FLASH_SPEED = 1000.0f;
 constexpr auto GAME_OVER_TITLE_FILEPATH = "Resources/sprites/game-over-title.png";
 constexpr auto GAME_OVER_BODY_FILEPATH = "Resources/sprites/game-over-body.png";
 constexpr auto GAME_OVER_BEFORE_APPEAR_TIME = 1.5f;
+
+constexpr auto PLATINUM_MEDAL_FILEPATH = "Resources/sprites/platinum-medal.png";
+constexpr auto GOLD_MEDAL_FILEPATH = "Resources/sprites/gold-medal.png";
+constexpr auto SILVER_MEDAL_FILEPATH = "Resources/sprites/silver-medal.png";
+constexpr auto BRONZE_MEDAL_FILEPATH = "Resources/sprites/bronze-medal.png";
