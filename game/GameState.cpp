@@ -22,12 +22,12 @@ namespace FlappyBird {
 
 
 		_pipe = new Pipe(_data);
-
 		_land = new Land(_data);
-
 		_bird = new Bird(_data);
 
 		_background.setTexture(this->_data->assets.getTexture("Game Background"));
+
+		_state = GameStates::READY;
 	}
 
 	void GameState::handleInput() {
@@ -39,25 +39,49 @@ namespace FlappyBird {
 
 			if (_data->input.isSpriteClicked(_background, sf::Mouse::Left, _data->window) ||
 				sf::Event::KeyPressed == event.type && event.key.code == sf::Keyboard::Space) {
-				_bird->tap();
+				if (_state != GameStates::OVER) {
+					_state = GameStates::PLAYING;
+					_bird->tap();
+				}
 			}
 		}
 	}
 
 	void GameState::update(float dt) {
-		_pipe->movePipe(dt);
-		_land->moveLand(dt);
+		if (_state != GameStates::OVER) {
+			_bird->animate(dt);
+			_land->moveLand(dt);
 
-		if (_clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY) {
-			_pipe->randomisePipeOffset();
-			_pipe->spawnInvisiblePipe();
-			_pipe->spawnBottomPipe();
-			_pipe->spawnTopPipe();
-
-			_clock.restart();
 		}
-		_bird->animate(dt);
-		_bird->update(dt);
+
+		if (_state == GameStates::PLAYING) {
+			_pipe->movePipe(dt);
+
+			if (_clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY) {
+				_pipe->randomisePipeOffset();
+				_pipe->spawnInvisiblePipe();
+				_pipe->spawnBottomPipe();
+				_pipe->spawnTopPipe();
+
+				_clock.restart();
+			}
+			_bird->update(dt);
+
+			std::vector<sf::Sprite> landSprites = _land->getSprites();
+			std::vector<sf::Sprite> pipeSprites = _pipe->getSprites();
+
+			for (int i = 0; i < landSprites.size(); i++) {
+				if (_collision.checkCollision(_bird->getSprite(), 0.7f, landSprites.at(i), 1.0f)) {
+					_state = GameStates::OVER;
+				}
+			}
+
+			for (int i = 0; i < pipeSprites.size(); i++) {
+				if (_collision.checkCollision(_bird->getSprite(), 0.61f, pipeSprites.at(i), 1.0f)) {
+					_state = GameStates::OVER;
+				}
+			}
+		}
 	}
 
 	void GameState::draw(float delta) {

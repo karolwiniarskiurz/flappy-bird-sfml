@@ -22,9 +22,11 @@ namespace FlappyBird {
 
 		void randomisePipeOffset();
 
+		const std::vector<sf::Sprite>& getSprites() const;
+
 	private:
 		GameDataRef _data;
-		std::vector<sf::Sprite> _pipeSprites;
+		std::vector<sf::Sprite> _sprites;
 
 		int _landHeight;
 		int _pipeSpawnYOffset;

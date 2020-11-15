@@ -8,27 +8,31 @@ namespace FlappyBird {
 		sprite.setPosition(0, _data->window.getSize().y + -sprite.getGlobalBounds().height);
 		sprite2.setPosition(sprite.getGlobalBounds().width, _data->window.getSize().y + -sprite.getGlobalBounds().height);
 
-		_landSprites.push_back(sprite);
-		_landSprites.push_back(sprite2);
+		_sprites.push_back(sprite);
+		_sprites.push_back(sprite2);
 	}
 
 	void Land::moveLand(float dt) {
 
-		for (unsigned short int i = 0; i < _landSprites.size(); i++) {
+		for (unsigned short int i = 0; i < _sprites.size(); i++) {
 			float movement = PIPE_SPEED * dt;
-			_landSprites.at(i).move(-movement, 0.0f);
+			_sprites.at(i).move(-movement, 0.0f);
 
-			if (_landSprites.at(i).getPosition().x <= 0 - _landSprites.at(i).getGlobalBounds().width) {
-				sf::Vector2f position(_data->window.getSize().x, _data-> window.getSize().y - _landSprites.at(i).getGlobalBounds().height);
-				_landSprites.at(i).setPosition(position);
+			if (_sprites.at(i).getPosition().x <= 0 - _sprites.at(i).getGlobalBounds().width) {
+				sf::Vector2f position(_data->window.getSize().x, _data-> window.getSize().y - _sprites.at(i).getGlobalBounds().height);
+				_sprites.at(i).setPosition(position);
 			}
 		}
 
 	}
 
 	void Land::drawLand() {
-		for (unsigned short int i = 0; i < _landSprites.size(); i++) {
-			_data->window.draw(_landSprites.at(i));
+		for (unsigned short int i = 0; i < _sprites.size(); i++) {
+			_data->window.draw(_sprites.at(i));
 		}
+	}
+
+	const std::vector<sf::Sprite>& Land::getSprites() const {
+		return _sprites;
 	}
 }

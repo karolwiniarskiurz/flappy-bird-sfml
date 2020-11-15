@@ -13,8 +13,9 @@ namespace FlappyBird {
 
 		void drawLand();
 
+		const std::vector<sf::Sprite>& getSprites() const;
 	private:
 		GameDataRef _data;
-		std::vector<sf::Sprite>_landSprites;
+		std::vector<sf::Sprite>_sprites;
 	};
 }

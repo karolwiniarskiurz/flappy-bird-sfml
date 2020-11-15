@@ -6,6 +6,7 @@
 #include "Pipe.hpp"
 #include "Land.hpp"
 #include "Bird.hpp"
+#include "Collision.hpp"
 
 namespace FlappyBird {
 	class GameState : public State {
@@ -29,6 +30,10 @@ namespace FlappyBird {
 
 		Bird* _bird;
 
+		Collision _collision;
+
 		sf::Clock _clock;
+
+		GameStates _state;
 	};
 }

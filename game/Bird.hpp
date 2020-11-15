@@ -15,6 +15,8 @@ namespace FlappyBird {
 		void update(float dt);
 		void tap();
 
+		const sf::Sprite &getSprite() const;
+
 	private:
 		GameDataRef _data;
 		sf::Sprite _sprite;
