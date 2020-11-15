@@ -2,7 +2,7 @@
 #include "GameState.hpp"
 #include "Definitions.hpp"
 #include "MainMenuState.hpp"
-
+#include "GameOverState.hpp"
 #include <iostream>
 
 namespace FlappyBird {
@@ -80,6 +80,7 @@ namespace FlappyBird {
 			for (int i = 0; i < landSprites.size(); i++) {
 				if (_collision.checkCollision(_bird->getSprite(), 0.7f, landSprites.at(i), 1.0f)) {
 					_state = GameStates::OVER;
+					_clock.restart();
 				}
 			}
 
@@ -87,6 +88,7 @@ namespace FlappyBird {
 			for (int i = 0; i < pipeSprites.size(); i++) {
 				if (_collision.checkCollision(_bird->getSprite(), 0.61f, pipeSprites.at(i), 1.0f)) {
 					_state = GameStates::OVER;
+					_clock.restart();
 				}
 			}
 
@@ -106,6 +108,9 @@ namespace FlappyBird {
 
 		if (_state == GameStates::OVER) {
 			_flash->show(dt);
+			if (_clock.getElapsedTime().asSeconds() > GAME_OVER_BEFORE_APPEAR_TIME) {
+				_data->machine.addState(StateRef(new GameOverState(_data)), true);
+			}
 		}
 	}
 

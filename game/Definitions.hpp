@@ -3,12 +3,13 @@
 constexpr auto SCREEN_WIDTH = 768;
 constexpr auto SCREEN_HEIGHT = 1024;
 constexpr auto GAME_NAME = "Flappy bird";
+constexpr auto ICON_FILEPATH = "Resources/sprites/bird-01.png";
 
 constexpr auto MAIN_MENU_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
-constexpr auto MAIN_MENU_MESSAGE_FILEPATH = "Resources/sprites/message.png";
+constexpr auto MAIN_MENU_TITLE_FILEPATH = "Resources/sprites/title.png";
+constexpr auto MAIN_MENU_PLAY_BUTTON = "Resources/sprites/play-button.png";
 
 constexpr auto FLAPPY_FONT_FILEPATH = "Resources/fonts/Flappy.ttf";
-
 
 constexpr auto GAME_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 constexpr auto PIPE_UP_FILEPATH = "Resources/sprites/pipe-up-green.png";
@@ -44,3 +45,7 @@ enum GameStates {
 };
 
 constexpr auto FLASH_SPEED = 1000.0f;
+
+constexpr auto GAME_OVER_TITLE_FILEPATH = "Resources/sprites/game-over-title.png";
+constexpr auto GAME_OVER_BODY_FILEPATH = "Resources/sprites/game-over-body.png";
+constexpr auto GAME_OVER_BEFORE_APPEAR_TIME = 1.5f;

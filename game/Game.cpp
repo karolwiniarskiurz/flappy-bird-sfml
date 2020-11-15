@@ -3,12 +3,19 @@
 #include "MainMenuState.hpp"
 #include <stdlib.h>
 #include <time.h>
+#include "Definitions.hpp"
 
 namespace FlappyBird {
 	Game::Game(int width, int height, std::string title) {
 		srand(time(NULL));
 
+
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+
+		sf::Image icon;
+		icon.loadFromFile(ICON_FILEPATH);
+		_data->window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
 		_data->machine.addState(StateRef(new MainMenuState(this->_data)));
 		this->run();
 	}

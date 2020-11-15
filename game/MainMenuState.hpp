@@ -18,8 +18,8 @@ namespace FlappyBird {
 	private:
 		GameDataRef _data;
 
-
 		sf::Sprite _background;
-		sf::Sprite _message;
+		sf::Sprite _title;
+		sf::Sprite _button;
 	};
 }

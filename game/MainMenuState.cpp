@@ -12,12 +12,17 @@ namespace FlappyBird {
 
 	void MainMenuState::init() {
 		_data->assets.loadTexture("Main Menu Background", MAIN_MENU_BACKGROUND_FILEPATH);
-		_data->assets.loadTexture("Main Menu Message", MAIN_MENU_MESSAGE_FILEPATH);
+		_data->assets.loadTexture("Main Menu Title", MAIN_MENU_TITLE_FILEPATH);
+		_data->assets.loadTexture("Play Button", MAIN_MENU_PLAY_BUTTON);
 
 		_background.setTexture(this->_data->assets.getTexture("Main Menu Background"));
-		_message.setTexture(this->_data->assets.getTexture("Main Menu Message"));
+		_title.setTexture(this->_data->assets.getTexture("Main Menu Title"));
+		_button.setTexture(this->_data->assets.getTexture("Play Button"));
 
-		_message.setPosition((SCREEN_WIDTH / 2 - _message.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - _message.getGlobalBounds().height / 2);
+		_title.setPosition(_data->window.getSize().x / 2 - _title.getGlobalBounds().width / 2,
+			_data->window.getSize().y / 4 - _title.getGlobalBounds().height);
+		_button.setPosition(_data->window.getSize().x / 2 - _button.getGlobalBounds().width / 2,
+			_data->window.getSize().y / 2 - _button.getGlobalBounds().height / 2);
 	}
 
 	void MainMenuState::handleInput() {
@@ -27,7 +32,7 @@ namespace FlappyBird {
 				_data->window.close();
 			}
 
-			if (_data->input.isSpriteClicked(_background, sf::Mouse::Left, _data->window)) {
+			if (_data->input.isSpriteClicked(_button, sf::Mouse::Left, _data->window)) {
 				_data->machine.addState(StateRef(new GameState(_data)), true);
 			}
 		}
@@ -41,7 +46,8 @@ namespace FlappyBird {
 
 		_data->window.draw(_background);
 
-		_data->window.draw(_message);
+		_data->window.draw(_title);
+		_data->window.draw(_button);
 
 		_data->window.display();
 	}
