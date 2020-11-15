@@ -9,7 +9,7 @@ namespace FlappyBird {
 	public:
 		Land(GameDataRef data);
 
-		void moveLand(float dt);
+		void moveLand(float dt, float speedfactor);
 
 		void drawLand();
 

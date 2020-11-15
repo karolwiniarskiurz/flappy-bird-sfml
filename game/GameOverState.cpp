@@ -40,24 +40,27 @@ namespace FlappyBird {
 		_data->assets.loadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
 		_data->assets.loadTexture("Platinum Medal", PLATINUM_MEDAL_FILEPATH);
 		_data->assets.loadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
-		_data->assets.loadTexture("Bronze Medal", GOLD_MEDAL_FILEPATH);
-		_data->assets.loadTexture("Silver Medal", GOLD_MEDAL_FILEPATH);
+		_data->assets.loadTexture("Bronze Medal", BRONZE_MEDAL_FILEPATH);
+		_data->assets.loadTexture("Silver Medal", SILVER_MEDAL_FILEPATH);
 
 		_background.setTexture(this->_data->assets.getTexture("Game Over Background"));
 		_gameOverTitle.setTexture(this->_data->assets.getTexture("Game Over Title"));
 		_gameOverContainer.setTexture(this->_data->assets.getTexture("Game Over Body"));
 		_retryButton.setTexture(this->_data->assets.getTexture("Play Button"));
 
-		if (_score <= 5) {
+		if (_score < 5) {
+			// no medal when such a low score
+		}
+		else if (_score <= 10) {
 			_medal.setTexture(_data->assets.getTexture("Bronze Medal"));
 		}
-		else if (_score <= 15) {
+		else if (_score <= 30) {
 			_medal.setTexture(_data->assets.getTexture("Silver Medal"));
 		}
-		else if (_score <= 30) {
+		else if (_score <= 50) {
 			_medal.setTexture(_data->assets.getTexture("Gold Medal"));
 		}
-		else {
+		else if (_score <= 100) {
 			_medal.setTexture(_data->assets.getTexture("Platinum Medal"));
 		}
 

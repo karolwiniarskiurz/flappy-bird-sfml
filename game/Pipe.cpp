@@ -43,13 +43,13 @@ namespace FlappyBird {
 		_scoringPipes.push_back(sprite);
 	}
 
-	void Pipe::movePipe(float dt) {
+	void Pipe::movePipe(float dt, float speedfactor) {
 		for (unsigned short int i = 0; i < _sprites.size(); i++) {
 			if (_sprites.at(i).getPosition().x < 0 - _sprites.at(i).getLocalBounds().width) {
 				_sprites.erase(_sprites.begin() + i);
 			}
 			else {
-				float movement = PIPE_SPEED * dt;
+				float movement = PIPE_SPEED * dt * speedfactor;
 				_sprites.at(i).move(-movement, 0);
 			}
 		}

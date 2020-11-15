@@ -9,9 +9,8 @@ namespace FlappyBird {
 	Game::Game(int width, int height, std::string title) {
 		srand(time(NULL));
 
-
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-		_data->window.setFramerateLimit(60);
+		_data->window.setFramerateLimit(240);
 
 		sf::Image icon;
 		icon.loadFromFile(ICON_FILEPATH);

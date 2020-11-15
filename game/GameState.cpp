@@ -4,6 +4,7 @@
 #include "MainMenuState.hpp"
 #include "GameOverState.hpp"
 #include <iostream>
+#include <algorithm>
 
 namespace FlappyBird {
 	GameState::GameState(GameDataRef data) : _data(data) {
@@ -55,16 +56,17 @@ namespace FlappyBird {
 	}
 
 	void GameState::update(float dt) {
+		float speedfactor = std::min(1.0f + _score / 15.0f, 5.0f);
 		if (_state != GameStates::OVER) {
 			_bird->animate(dt);
-			_land->moveLand(dt);
+			_land->moveLand(dt, speedfactor);
 
 		}
 
 		if (_state == GameStates::PLAYING) {
-			_pipe->movePipe(dt);
+			_pipe->movePipe(dt, speedfactor);
 
-			if (_clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY) {
+			if (_clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY / speedfactor) {
 				_pipe->randomisePipeOffset();
 				_pipe->spawnInvisiblePipe();
 				_pipe->spawnBottomPipe();
@@ -90,6 +92,12 @@ namespace FlappyBird {
 					_state = GameStates::OVER;
 					_clock.restart();
 				}
+			}
+
+			auto birdY = _bird->getSprite().getPosition().y;
+			if (birdY <= 0) {
+				_state = GameStates::OVER;
+				_clock.restart();
 			}
 
 			if (_state == GameStates::PLAYING) {

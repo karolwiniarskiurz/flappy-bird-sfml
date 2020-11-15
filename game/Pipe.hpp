@@ -20,7 +20,7 @@ namespace FlappyBird {
 		
 		void spawnScoringPipe();
 
-		void movePipe(float dt);
+		void movePipe(float dt, float speedfactor);
 
 		void randomisePipeOffset();
 

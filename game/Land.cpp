@@ -12,13 +12,13 @@ namespace FlappyBird {
 		_sprites.push_back(sprite2);
 	}
 
-	void Land::moveLand(float dt) {
+	void Land::moveLand(float dt, float speedfactor) {
 
 		for (unsigned short int i = 0; i < _sprites.size(); i++) {
-			float movement = PIPE_SPEED * dt;
+			float movement = PIPE_SPEED * dt * speedfactor;
 			_sprites.at(i).move(-movement, 0.0f);
 
-			if (_sprites.at(i).getPosition().x <= 0 - _sprites.at(i).getGlobalBounds().width) {
+			if (_sprites.at(i).getPosition().x < 0 - _sprites.at(i).getGlobalBounds().width) {
 				sf::Vector2f position(_data->window.getSize().x, _data-> window.getSize().y - _sprites.at(i).getGlobalBounds().height);
 				_sprites.at(i).setPosition(position);
 			}
