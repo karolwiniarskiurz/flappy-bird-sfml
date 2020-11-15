@@ -1,9 +1,13 @@
 #include "Game.hpp"
 #include "State.hpp"
 #include "MainMenuState.hpp"
+#include <stdlib.h>
+#include <time.h>
 
 namespace FlappyBird {
 	Game::Game(int width, int height, std::string title) {
+		srand(time(NULL));
+
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		_data->machine.addState(StateRef(new MainMenuState(this->_data)));
 		this->run();

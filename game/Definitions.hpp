@@ -13,7 +13,22 @@ constexpr auto PIPE_DOWN_FILEPATH = "Resources/sprites/pipe-down-green.png";
 constexpr auto PIPE_SPEED = 200;
 constexpr auto PIPE_SPAWN_FREQUENCY = 2.0f;
 
+constexpr auto BIRD_1_FILEPATH = "Resources/sprites/bird-01.png";
+constexpr auto BIRD_2_FILEPATH = "Resources/sprites/bird-02.png";
+constexpr auto BIRD_3_FILEPATH = "Resources/sprites/bird-03.png";
+constexpr auto BIRD_4_FILEPATH = "Resources/sprites/bird-04.png";
+constexpr auto BIRD_ANIMATION_DURATION = 0.5f;
+
 constexpr auto LAND_BASE_FILENAME = "Resources/sprites/base.png";
 
 constexpr auto GAME_OVER_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
+
+constexpr auto BIRD_STATE_STILL = 1;
+constexpr auto BIRD_STATE_FALLING = 2;
+constexpr auto BIRD_STATE_FLYING = 3;
+constexpr auto GRAVITY = 400.0f;
+constexpr auto FLYING_SPEED = 350.0f;
+constexpr auto FLYING_DURATION = 0.25f;
+constexpr auto ROTATION_SPEED = 100.0f;
+
 
