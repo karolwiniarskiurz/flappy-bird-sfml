@@ -7,6 +7,7 @@
 #include "Land.hpp"
 #include "Bird.hpp"
 #include "Collision.hpp"
+#include "Flash.hpp"
 
 namespace FlappyBird {
 	class GameState : public State {
@@ -29,6 +30,8 @@ namespace FlappyBird {
 		Land* _land;
 
 		Bird* _bird;
+
+		Flash* _flash;
 
 		Collision _collision;
 

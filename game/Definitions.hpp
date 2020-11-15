@@ -38,3 +38,5 @@ enum GameStates {
 	PLAYING,
 	OVER
 };
+
+constexpr auto FLASH_SPEED = 1000.0f;

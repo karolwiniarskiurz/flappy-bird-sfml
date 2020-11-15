@@ -24,6 +24,7 @@ namespace FlappyBird {
 		_pipe = new Pipe(_data);
 		_land = new Land(_data);
 		_bird = new Bird(_data);
+		_flash = new Flash(_data);
 
 		_background.setTexture(this->_data->assets.getTexture("Game Background"));
 
@@ -82,6 +83,10 @@ namespace FlappyBird {
 				}
 			}
 		}
+
+		if (_state == GameStates::OVER) {
+			_flash->show(dt);
+		}
 	}
 
 	void GameState::draw(float delta) {
@@ -92,6 +97,7 @@ namespace FlappyBird {
 		_pipe->drawPipes();
 		_land->drawLand();
 		_bird->draw();
+		_flash->draw();
 
 		_data->window.display();
 	}
