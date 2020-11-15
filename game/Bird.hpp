@@ -23,7 +23,7 @@ namespace FlappyBird {
 		sf::Clock _clock;
 		sf::Clock _movementClock;
 
-		int _state;
+		BirdState _state;
 
 		float _rotation;
 	};

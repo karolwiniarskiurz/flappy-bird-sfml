@@ -12,7 +12,7 @@ namespace FlappyBird {
 		_sprite.setPosition(_data->window.getSize().x / 4 - _sprite.getGlobalBounds().width / 2,
 			_data->window.getSize().y / 2 - _sprite.getGlobalBounds().height / 2);
 
-		_state = BIRD_STATE_STILL;
+		_state = BirdState::STILL;
 		sf::Vector2f origin = sf::Vector2f(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height / 2);
 		_sprite.setOrigin(origin);
 		_rotation = 0;
@@ -37,7 +37,7 @@ namespace FlappyBird {
 	}
 
 	void Bird::update(float dt) {
-		if (_state == BIRD_STATE_FALLING) {
+		if (_state == BirdState::FALLING) {
 			_sprite.move(0, GRAVITY * dt);
 
 			_rotation += ROTATION_SPEED * dt;
@@ -46,7 +46,7 @@ namespace FlappyBird {
 				_rotation = 30.0f;
 			}
 		}
-		else if (_state == BIRD_STATE_FLYING) {
+		else if (_state == BirdState::FLYING) {
 			_sprite.move(0, -FLYING_SPEED * dt);
 
 			_rotation -= ROTATION_SPEED * dt;
@@ -60,12 +60,12 @@ namespace FlappyBird {
 
 		if (_movementClock.getElapsedTime().asSeconds() > FLYING_DURATION) {
 			_movementClock.restart();
-			_state = BIRD_STATE_FALLING;
+			_state = BirdState::FALLING;
 		}
 	}
 
 	void Bird::tap() {
 		_movementClock.restart();
-		_state = BIRD_STATE_FLYING;
+		_state = BirdState::FLYING;
 	}
 }

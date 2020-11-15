@@ -23,12 +23,12 @@ constexpr auto LAND_BASE_FILENAME = "Resources/sprites/base.png";
 
 constexpr auto GAME_OVER_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 
-constexpr auto BIRD_STATE_STILL = 1;
-constexpr auto BIRD_STATE_FALLING = 2;
-constexpr auto BIRD_STATE_FLYING = 3;
+enum BirdState {
+	STILL,
+	FALLING,
+	FLYING
+};
 constexpr auto GRAVITY = 400.0f;
 constexpr auto FLYING_SPEED = 350.0f;
 constexpr auto FLYING_DURATION = 0.25f;
 constexpr auto ROTATION_SPEED = 100.0f;
-
-
