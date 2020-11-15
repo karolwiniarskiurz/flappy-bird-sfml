@@ -35,6 +35,14 @@ namespace FlappyBird {
 		_sprites.push_back(sprite);
 	}
 
+	void Pipe::spawnScoringPipe() {
+		sf::Sprite sprite(_data->assets.getTexture("Scoring Pipe"));
+
+		sprite.setPosition(this->_data->window.getSize().x, 0);
+
+		_scoringPipes.push_back(sprite);
+	}
+
 	void Pipe::movePipe(float dt) {
 		for (unsigned short int i = 0; i < _sprites.size(); i++) {
 			if (_sprites.at(i).getPosition().x < 0 - _sprites.at(i).getLocalBounds().width) {
@@ -45,6 +53,16 @@ namespace FlappyBird {
 				_sprites.at(i).move(-movement, 0);
 			}
 		}
+
+		for (unsigned short int i = 0; i < _scoringPipes.size(); i++) {
+			if (_scoringPipes.at(i).getPosition().x < 0 - _scoringPipes.at(i).getLocalBounds().width) {
+				_scoringPipes.erase(_scoringPipes.begin() + i);
+			}
+			else {
+				float movement = PIPE_SPEED * dt;
+				_scoringPipes.at(i).move(-movement, 0);
+			}
+		}
 	}
 
 	void Pipe::randomisePipeOffset() {
@@ -53,6 +71,10 @@ namespace FlappyBird {
 
 	const std::vector<sf::Sprite>& Pipe::getSprites() const {
 		return _sprites;
+	}
+
+	std::vector<sf::Sprite>& Pipe::getScoringPipesSprites() {
+		return _scoringPipes;
 	}
 
 }

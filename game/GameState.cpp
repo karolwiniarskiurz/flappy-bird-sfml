@@ -19,6 +19,7 @@ namespace FlappyBird {
 		_data->assets.loadTexture("Bird 2", BIRD_2_FILEPATH);
 		_data->assets.loadTexture("Bird 3", BIRD_3_FILEPATH);
 		_data->assets.loadTexture("Bird 4", BIRD_4_FILEPATH);
+		_data->assets.loadTexture("Scoring Pipe", PIPE_SCORING_FILEPATH);
 
 
 		_pipe = new Pipe(_data);
@@ -28,6 +29,7 @@ namespace FlappyBird {
 
 		_background.setTexture(this->_data->assets.getTexture("Game Background"));
 
+		_score = 0;
 		_state = GameStates::READY;
 	}
 
@@ -63,13 +65,13 @@ namespace FlappyBird {
 				_pipe->spawnInvisiblePipe();
 				_pipe->spawnBottomPipe();
 				_pipe->spawnTopPipe();
+				_pipe->spawnScoringPipe();
 
 				_clock.restart();
 			}
 			_bird->update(dt);
 
 			std::vector<sf::Sprite> landSprites = _land->getSprites();
-			std::vector<sf::Sprite> pipeSprites = _pipe->getSprites();
 
 			for (int i = 0; i < landSprites.size(); i++) {
 				if (_collision.checkCollision(_bird->getSprite(), 0.7f, landSprites.at(i), 1.0f)) {
@@ -77,9 +79,23 @@ namespace FlappyBird {
 				}
 			}
 
+			std::vector<sf::Sprite> pipeSprites = _pipe->getSprites();
 			for (int i = 0; i < pipeSprites.size(); i++) {
 				if (_collision.checkCollision(_bird->getSprite(), 0.61f, pipeSprites.at(i), 1.0f)) {
 					_state = GameStates::OVER;
+				}
+			}
+
+			if (_state == GameStates::PLAYING) {
+				std::vector<sf::Sprite>& scoringPipeSprites = _pipe->getScoringPipesSprites();
+				for (int i = 0; i < scoringPipeSprites.size(); i++) {
+					if (_collision.checkCollision(_bird->getSprite(), 0.61f, scoringPipeSprites.at(i), 1.0f)) {
+						_score++;
+
+						std::cout << _score << std::endl;
+
+						scoringPipeSprites.erase(scoringPipeSprites.begin() + i);
+					}
 				}
 			}
 		}

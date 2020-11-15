@@ -10,6 +10,7 @@ constexpr auto MAIN_MENU_MESSAGE_FILEPATH = "Resources/sprites/message.png";
 constexpr auto GAME_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 constexpr auto PIPE_UP_FILEPATH = "Resources/sprites/pipe-up-green.png";
 constexpr auto PIPE_DOWN_FILEPATH = "Resources/sprites/pipe-down-green.png";
+constexpr auto PIPE_SCORING_FILEPATH = "Resources/sprites/pipe-scoring.png";
 constexpr auto PIPE_SPEED = 200;
 constexpr auto PIPE_SPAWN_FREQUENCY = 2.0f;
 
