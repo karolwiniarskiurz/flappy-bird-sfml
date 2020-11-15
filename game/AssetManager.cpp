@@ -24,4 +24,17 @@ namespace FlappyBird {
 	sf::Font& AssetManager::getFont(std::string name) {
 		return this->_fonts[name];
 	}
+
+
+	void AssetManager::loadSound(std::string name, std::string fileName) {
+		sf::SoundBuffer sound;
+
+		if (sound.loadFromFile(fileName)) {
+			this->_sounds[name] = sound;
+		}
+	}
+
+	sf::SoundBuffer& AssetManager::getSound(std::string name) {
+		return this->_sounds[name];
+	}
 }

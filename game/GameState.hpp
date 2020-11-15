@@ -39,5 +39,9 @@ namespace FlappyBird {
 		GameStates _state;
 
 		int _score;
+
+		sf::Sound _hitSound;
+		sf::Sound _wingSound;
+		sf::Sound _pointSound;
 	};
 }

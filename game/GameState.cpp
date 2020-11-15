@@ -22,6 +22,9 @@ namespace FlappyBird {
 		_data->assets.loadTexture("Bird 4", BIRD_4_FILEPATH);
 		_data->assets.loadTexture("Scoring Pipe", PIPE_SCORING_FILEPATH);
 		_data->assets.loadFont("Flappy Font", FLAPPY_FONT_FILEPATH);
+		_data->assets.loadSound("Hit", HIT_SOUND_FILEPATH);
+		_data->assets.loadSound("Wing", WING_SOUND_FILEPATH);
+		_data->assets.loadSound("Point", POINT_SOUND_FILEPATH);
 
 
 		_pipe = new Pipe(_data);
@@ -29,6 +32,10 @@ namespace FlappyBird {
 		_bird = new Bird(_data);
 		_flash = new Flash(_data);
 		_hud = new HUD(_data);
+
+		_hitSound.setBuffer(_data->assets.getSound("Hit"));
+		_wingSound.setBuffer(_data->assets.getSound("Wing"));
+		_pointSound.setBuffer(_data->assets.getSound("Point"));
 
 		_background.setTexture(this->_data->assets.getTexture("Game Background"));
 
@@ -50,6 +57,8 @@ namespace FlappyBird {
 				if (_state != GameStates::OVER) {
 					_state = GameStates::PLAYING;
 					_bird->tap();
+
+					_wingSound.play();
 				}
 			}
 		}
@@ -83,6 +92,7 @@ namespace FlappyBird {
 				if (_collision.checkCollision(_bird->getSprite(), 0.7f, landSprites.at(i), 1.0f)) {
 					_state = GameStates::OVER;
 					_clock.restart();
+					_hitSound.play();
 				}
 			}
 
@@ -91,6 +101,7 @@ namespace FlappyBird {
 				if (_collision.checkCollision(_bird->getSprite(), 0.61f, pipeSprites.at(i), 1.0f)) {
 					_state = GameStates::OVER;
 					_clock.restart();
+					_hitSound.play();
 				}
 			}
 
@@ -98,6 +109,7 @@ namespace FlappyBird {
 			if (birdY <= 0) {
 				_state = GameStates::OVER;
 				_clock.restart();
+				_hitSound.play();
 			}
 
 			if (_state == GameStates::PLAYING) {
@@ -109,6 +121,8 @@ namespace FlappyBird {
 						_hud->updateScore(_score);
 
 						scoringPipeSprites.erase(scoringPipeSprites.begin() + i);
+
+						_pointSound.play();
 					}
 				}
 			}

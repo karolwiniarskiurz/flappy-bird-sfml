@@ -55,3 +55,7 @@ constexpr auto PLATINUM_MEDAL_FILEPATH = "Resources/sprites/platinum-medal.png";
 constexpr auto GOLD_MEDAL_FILEPATH = "Resources/sprites/gold-medal.png";
 constexpr auto SILVER_MEDAL_FILEPATH = "Resources/sprites/silver-medal.png";
 constexpr auto BRONZE_MEDAL_FILEPATH = "Resources/sprites/bronze-medal.png";
+
+constexpr auto HIT_SOUND_FILEPATH = "Resources/audio/Hit.wav";
+constexpr auto POINT_SOUND_FILEPATH = "Resources/audio/Point.wav";
+constexpr auto WING_SOUND_FILEPATH = "Resources/audio/Wing.wav";
