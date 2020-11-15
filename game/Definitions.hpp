@@ -4,6 +4,7 @@ constexpr auto SCREEN_WIDTH = 768;
 constexpr auto SCREEN_HEIGHT = 1024;
 constexpr auto GAME_NAME = "Flappy bird";
 constexpr auto ICON_FILEPATH = "Resources/sprites/bird-01.png";
+constexpr auto HIGH_SCORE_FILE = "Resources/highscore.txt";
 
 constexpr auto MAIN_MENU_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 constexpr auto MAIN_MENU_TITLE_FILEPATH = "Resources/sprites/title.png";

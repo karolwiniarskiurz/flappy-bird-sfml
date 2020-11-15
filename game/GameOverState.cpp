@@ -5,13 +5,37 @@
 #include "GameState.hpp"
 
 #include <iostream>
+#include <fstream>
 
 namespace FlappyBird {
-	GameOverState::GameOverState(GameDataRef data) : _data(data) {
+	GameOverState::GameOverState(GameDataRef data, int score) : _data(data), _score(score) {
 
 	}
 
 	void GameOverState::init() {
+
+		std::ifstream readfile;
+		readfile.open(HIGH_SCORE_FILE);
+
+		if (readfile.is_open()) {
+			while (!readfile.eof()) {
+				readfile >> _highScore;
+			}
+		}
+
+		readfile.close();
+
+		std::ofstream writeFile(HIGH_SCORE_FILE);
+		if (writeFile.is_open()) {
+			if (_score > _highScore) {
+				_highScore = _score;
+			}
+
+			writeFile << _highScore;
+		}
+
+		writeFile.close();
+
 		_data->assets.loadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
 		_data->assets.loadTexture("Game Over Title", GAME_OVER_TITLE_FILEPATH);
 		_data->assets.loadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
@@ -30,6 +54,20 @@ namespace FlappyBird {
 
 		_retryButton.setPosition(_data->window.getSize().x / 2 - _retryButton.getGlobalBounds().width / 2,
 			_gameOverContainer.getPosition().y + _gameOverContainer.getGlobalBounds().height * 1.2f);
+
+		_scoreText.setFont(_data->assets.getFont("Flappy Font"));
+		_scoreText.setString(std::to_string(_score));
+		_scoreText.setCharacterSize(54);
+		_scoreText.setFillColor(sf::Color::White);
+		_scoreText.setOrigin(_scoreText.getGlobalBounds().width / 2, _scoreText.getGlobalBounds().height / 2);
+		_scoreText.setPosition(_data->window.getSize().x / 10 * 7.25, _data->window.getSize().y / 2.15);
+
+		_highScoreText.setFont(_data->assets.getFont("Flappy Font"));
+		_highScoreText.setString(std::to_string(_highScore));
+		_highScoreText.setCharacterSize(54);
+		_highScoreText.setFillColor(sf::Color::White);
+		_highScoreText.setOrigin(_highScoreText.getGlobalBounds().width / 2, _highScoreText.getGlobalBounds().height / 2);
+		_highScoreText.setPosition(_data->window.getSize().x / 10 * 7.25, _data->window.getSize().y / 1.8);
 	}
 
 	void GameOverState::handleInput() {
@@ -55,6 +93,8 @@ namespace FlappyBird {
 		_data->window.draw(_gameOverContainer);
 		_data->window.draw(_gameOverTitle);
 		_data->window.draw(_retryButton);
+		_data->window.draw(_scoreText);
+		_data->window.draw(_highScoreText);
 
 		_data->window.display();
 	}

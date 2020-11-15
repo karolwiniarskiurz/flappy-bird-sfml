@@ -109,7 +109,7 @@ namespace FlappyBird {
 		if (_state == GameStates::OVER) {
 			_flash->show(dt);
 			if (_clock.getElapsedTime().asSeconds() > GAME_OVER_BEFORE_APPEAR_TIME) {
-				_data->machine.addState(StateRef(new GameOverState(_data)), true);
+				_data->machine.addState(StateRef(new GameOverState(_data, _score)), true);
 			}
 		}
 	}
