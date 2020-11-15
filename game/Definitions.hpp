@@ -7,6 +7,9 @@ constexpr auto GAME_NAME = "Flappy bird";
 constexpr auto MAIN_MENU_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 constexpr auto MAIN_MENU_MESSAGE_FILEPATH = "Resources/sprites/message.png";
 
+constexpr auto FLAPPY_FONT_FILEPATH = "Resources/fonts/Flappy.ttf";
+
+
 constexpr auto GAME_BACKGROUND_FILEPATH = "Resources/sprites/background-day.png";
 constexpr auto PIPE_UP_FILEPATH = "Resources/sprites/pipe-up-green.png";
 constexpr auto PIPE_DOWN_FILEPATH = "Resources/sprites/pipe-down-green.png";

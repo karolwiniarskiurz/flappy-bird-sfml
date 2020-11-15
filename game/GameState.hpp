@@ -8,6 +8,7 @@
 #include "Bird.hpp"
 #include "Collision.hpp"
 #include "Flash.hpp"
+#include "HUD.hpp"
 
 namespace FlappyBird {
 	class GameState : public State {
@@ -26,12 +27,10 @@ namespace FlappyBird {
 		sf::Sprite _background;
 
 		Pipe* _pipe;
-
 		Land* _land;
-
 		Bird* _bird;
-
 		Flash* _flash;
+		HUD* _hud;
 
 		Collision _collision;
 
